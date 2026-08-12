@@ -12,6 +12,7 @@ This project combines:
 1. **A target application** (Node.js service with health and latency endpoints)
 2. **Chaos experiments** (Chaos Mesh YAML manifests: pod kill, network delay, CPU stress)
 3. **SLO/Error-Budget dashboard** (Prometheus recording rules + Grafana dashboard)
+4. **Automated Remediation** (A webhook that catches Grafana alerts and automatically initiates a deployment freeze when error budgets are exhausted).
 
 ```
 ┌──────────────┐    Chaos Mesh     ┌──────────────┐
@@ -50,6 +51,8 @@ Running `kubectl delete pod` is not chaos engineering. This project uses **Chaos
 ├── monitoring/
 │   ├── prometheus-rules.yaml     # SLI/SLO recording and alerting rules
 │   └── grafana-dashboard.json    # Error budget dashboard
+├── webhook/
+│   └── server.js                 # Webhook for automated deployment freezes
 ├── k8s/                          # Kubernetes deployment manifests
 │   └── deployment.yaml
 ├── docs/ARCHITECTURE.md

@@ -1,0 +1,47 @@
+groups:
+  - name: slo-rules
+    interval: 30s
+    rules:
+      # --- SLI: Availability ---
+      - record: sli:availability:ratio
+        expr: |
+          sum(rate(http_requests_total{status=~"2.."}[5m]))
+          /
+          sum(rate(http_requests_total[5m]))
+
+      # --- SLI: Latency (p99 under 500ms) ---
+      - record: sli:latency:p99
+        expr: |
+          histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))
+
+      # --- SLO: 99.9% Availability (30-day window) ---
+      - record: slo:availability:ratio30d
+        expr: |
+          avg_over_time(sli:availability:ratio[30d])
+
+      # --- Error Budget Remaining ---
+      - record: slo:error_budget:remaining
+        expr: |
+          1 - (
+            (1 - slo:availability:ratio30d)
+            /
+            (1 - 0.999)
+          )
+
+  - name: slo-alerts
+    rules:
+      - alert: ErrorBudgetBurnRateCritical
+        expr: slo:error_budget:remaining < 0.25
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error budget is below 25% — stop feature work and focus on reliability"
+
+      - alert: LatencySLOBreach
+        expr: sli:latency:p99 > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P99 latency exceeds 500ms SLO target"

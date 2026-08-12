@@ -1,0 +1,1 @@
+{"name":"chaos-target-app","version":"1.0.0","main":"index.js","dependencies":{"express":"^4.18.2","prom-client":"^15.0.0"}}

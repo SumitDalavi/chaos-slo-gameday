@@ -1,2 +1,4 @@
 do-not-commit/
 node_modules/
+build/
+dist/

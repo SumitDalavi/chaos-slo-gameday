@@ -75,7 +75,7 @@ Running `kubectl delete pod` is not chaos engineering. This project uses **Chaos
 | Three experiment types | Covers the three most common failure modes: process crash, network degradation, resource exhaustion |
 
 
-## ðŸ“‹ Prerequisites
+## 📋 Prerequisites
 
 | Tool | Version | Purpose |
 |------|---------|---------|
@@ -84,7 +84,7 @@ Running `kubectl delete pod` is not chaos engineering. This project uses **Chaos
 | [Helm](https://helm.sh/) | >= 3.x | Package manager for K8s |
 | [Docker](https://www.docker.com/) | >= 24.x | Container runtime |
 
-## ðŸš€ Step-by-Step Setup
+## 🚀 Step-by-Step Setup
 
 ### Option A: Local Cluster (kind)
 
@@ -96,8 +96,9 @@ cd chaos-slo-gameday
 # 2. Create a local Kubernetes cluster
 kind create cluster --name chaos-lab
 
-# 3. Install LitmusChaos
-kubectl apply -f https://litmuschaos.github.io/litmus/litmus-operator-v3.0.0.yaml
+# 3. Install Chaos Mesh
+helm repo add chaos-mesh https://charts.chaos-mesh.org
+helm install chaos-mesh chaos-mesh/chaos-mesh --namespace chaos-mesh --create-namespace --set chaosDaemon.runtime=containerd --set chaosDaemon.socketPath=/run/containerd/containerd.sock
 
 # 4. Deploy the target application
 kubectl apply -f k8s/deployment.yaml
@@ -119,7 +120,7 @@ kubectl cluster-info
 # Follow steps 3-6 from Option A
 ```
 
-## ðŸ§ª Usage & Demo â€” Running a GameDay
+## 🧪 Usage & Demo â€” Running a GameDay
 
 ### Step 1: Verify the target app is healthy
 ```bash
@@ -156,13 +157,13 @@ kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 909
 # Open http://localhost:9090 and check alerting rules
 ```
 
-## âœ… Verification
+## ✅ Verification
 
 | Check | Command | Expected |
 |-------|---------|----------|
 | Cluster ready | `kubectl get nodes` | Node(s) in Ready state |
 | App running | `kubectl get pods -l app=target-app` | Pod(s) Running |
-| Chaos engine | `kubectl get chaosengines` | Experiments listed |
+| Chaos engine | `kubectl get podchaos,stresschaos,networkchaos -n default` | Experiments listed |
 | Prometheus | Port-forward to 9090 | Metrics and alerts visible |
 
 ```bash
@@ -172,4 +173,9 @@ kind delete cluster --name chaos-lab
 
 ## 👨‍💻 Author
 
-*Built to demonstrate SRE practices: chaos engineering, SLO frameworks, and error-budget-driven development.*
+**Sumit Dalavi** — Senior DevSecOps / Platform Engineer
+[GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
+
+---
+
+*Built with a focus on production-grade patterns, not toy demos.*

@@ -1,5 +1,16 @@
 # Architecture: Chaos + SLO Game-Day
 
+## System Diagram
+The following Mermaid.js sequence diagram maps the core workflow and interactions:
+
+```mermaid
+sequenceDiagram
+    CRD->>ChaosController: Apply NetworkDelay
+ChaosController->>Daemon: Inject to Pod
+Prometheus->>Grafana: Monitor SLO Burn
+```
+
+
 ## SLO Framework
 ### SLIs (Service Level Indicators)
 - **Availability SLI**: Ratio of successful HTTP responses (2xx) to total requests

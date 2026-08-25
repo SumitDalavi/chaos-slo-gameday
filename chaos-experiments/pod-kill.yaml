@@ -1,16 +1,14 @@
 apiVersion: chaos-mesh.org/v1alpha1
 kind: PodChaos
 metadata:
-  name: pod-kill-experiment
-  namespace: chaos-testing
+  name: pod-kill-example
+  namespace: default
 spec:
   action: pod-kill
   mode: one
   selector:
-    namespaces:
-      - default
     labelSelectors:
-      app: chaos-target
-  scheduler:
-    cron: "@every 5m"
+      app: target-app
   duration: "30s"
+  scheduler:
+    cron: "@every 2m"

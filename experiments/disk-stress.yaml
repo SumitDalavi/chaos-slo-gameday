@@ -1,0 +1,20 @@
+# Chaos Mesh disk I/O stress experiment
+# Tests application resilience to disk saturation
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: disk-io-stress
+  namespace: demo
+spec:
+  mode: one
+  selector:
+    namespaces: [demo]
+    labelSelectors:
+      app: order-service
+  stressors:
+    io:
+      workers: 4
+      size: "10GB"
+      path: /tmp
+  duration: "3m"
+  containerNames: [order-service]

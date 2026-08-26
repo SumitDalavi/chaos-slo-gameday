@@ -1,0 +1,22 @@
+# Chaos Mesh network partition experiment
+# Simulates a network split between the API gateway and payment service
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: api-payment-partition
+  namespace: demo
+spec:
+  action: partition
+  mode: all
+  selector:
+    namespaces: [demo]
+    labelSelectors:
+      app: api-gateway
+  direction: both
+  target:
+    mode: all
+    selector:
+      namespaces: [demo]
+      labelSelectors:
+        app: payment-service
+  duration: "5m"

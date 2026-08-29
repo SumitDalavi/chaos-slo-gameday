@@ -1,5 +1,3 @@
-> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
-
 
 # Chaos Engineering + SLO Game-Day Project 💥📈
 
@@ -182,6 +180,7 @@ kind delete cluster --name chaos-lab
 
 ## 📚 Documentation
 
+- [Game Day Report (2026-08-29)](docs/gameday-report-2026-08-29.md) — Real execution of failover testing.
 - [Architecture](docs/ARCHITECTURE.md) — System diagram and component details
 - [Runbook](docs/runbook.md) — Setup, commands, and expected outputs
 - [Decisions](docs/decisions.md) — ADRs for Chaos Engineering approach

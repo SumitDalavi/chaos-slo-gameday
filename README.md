@@ -1,6 +1,8 @@
 
 # Chaos Engineering + SLO Game-Day Project 💥📈
 
+[![CI](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml)
+
 > **Maturity:** Lab / Reference Implementation
 > _Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning your "~99.95% uptime" resume claim into something an interviewer can actually inspect._
 

@@ -1,3 +1,6 @@
+> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
+
+
 # Chaos Engineering + SLO Game-Day Project 💥📈
 
 > **Maturity:** Lab / Reference Implementation

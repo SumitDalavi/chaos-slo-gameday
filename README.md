@@ -1,6 +1,7 @@
 # Chaos Engineering + SLO Game-Day Project 💥📈
 
-> Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning your "~99.95% uptime" resume claim into something an interviewer can actually inspect.
+> **Maturity:** Lab / Reference Implementation
+> _Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning your "~99.95% uptime" resume claim into something an interviewer can actually inspect._
 
 ## The Problem
 
@@ -176,6 +177,22 @@ kind delete cluster --name chaos-lab
 **Sumit Dalavi** — Senior DevSecOps / Platform Engineer
 [GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
 
----
+## 📚 Documentation
 
-*Built with a focus on production-grade patterns, not toy demos.*
+- [Architecture](docs/ARCHITECTURE.md) — System diagram and component details
+- [Runbook](docs/runbook.md) — Setup, commands, and expected outputs
+- [Decisions](docs/decisions.md) — ADRs for Chaos Engineering approach
+- [Changelog](docs/changelog.md) — Change history
+- [GameDay Report](docs/gameday_report.md) — Results of SLO breach simulation
+
+## Mock Boundaries (Honest Scope)
+
+| What | Status | Details |
+|---|---|---|
+| Target Application | **Real** | A real Express.js app container instrumented for Prometheus. |
+| Fault Injection | **Real** | Chaos Mesh actually kills pods and injects tc-based network delays via DaemonSets. |
+| Alert Routing | **Mocked** | Webhook triggers a local script rather than actually paging PagerDuty or executing Argo rollbacks. |
+
+## 🔗 Related Projects
+
+- [`gitops-progressive-delivery`](../gitops-progressive-delivery/) — Uses the metrics proven here for automated rollbacks.

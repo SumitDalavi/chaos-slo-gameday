@@ -1,11 +1,11 @@
 
 # Chaos Engineering + SLO Game-Day Project 💥📈
 
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/chaos-slo-gameday)](https://github.com/SumitDalavi/chaos-slo-gameday/releases)
+[![CI Pipeline](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/chaos-slo-gameday?color=0969da&label=release&logo=github)](https://github.com/SumitDalavi/chaos-slo-gameday/releases)
 [![Release Workflow](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/release.yml)
-
-
-[![CI](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/chaos-slo-gameday/actions/workflows/ci.yml)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/chaos-slo-gameday/releases/tag/v0.2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **Maturity:** Lab / Reference Implementation
 > _Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning your "~99.95% uptime" resume claim into something an interviewer can actually inspect._
@@ -81,7 +81,6 @@ Running `kubectl delete pod` is not chaos engineering. This project uses **Chaos
 | Chaos Mesh over LitmusChaos | Chaos Mesh is more Kubernetes-native with CRD-based experiment definitions |
 | Error budget over uptime % | Error budgets quantify *remaining tolerance for failure* — the modern SRE approach |
 | Three experiment types | Covers the three most common failure modes: process crash, network degradation, resource exhaustion |
-
 
 ## 📋 Prerequisites
 

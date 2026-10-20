@@ -28,7 +28,9 @@ jobs:
           pip install pytest
 
       - name: Run Tests
-        run: pytest tests/ -v
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests/ -v
 
       - name: Package Release Distribution Bundle
         run: |

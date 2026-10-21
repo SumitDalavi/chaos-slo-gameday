@@ -7,8 +7,7 @@
 [![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/chaos-slo-gameday/releases/tag/v0.2.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **Maturity:** Lab / Reference Implementation
-> _Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning your "~99.95% uptime" resume claim into something an interviewer can actually inspect._
+> Fault injection with Chaos Mesh against a Prometheus-backed SLO/error-budget dashboard — turning resilience validation into a measurable, verifiable platform demonstration.
 
 ## The Problem
 

@@ -58,3 +58,20 @@ graph LR
    - **AI Providers:** Deterministic heuristic generators and local embeddings transparently promote to live OpenAI, Anthropic, or Gemini API clients.
 3. **Hot-Reload & Dynamic TLS:** File watchers monitor mounted volume paths (Kubernetes ConfigMaps and Secrets) to update certificates and limit configs atomically without process restarts.
 4. **Health & Observability:** The `/health` endpoint exposes real-time runtime mode metadata (`mock` vs `live`) across all backing adapters.
+
+## Closed-Loop Canary Chaos Verification (v0.2.1)
+
+```mermaid
+sequenceDiagram
+    participant Rollout as Argo Rollouts (25% Weight)
+    participant Chaos as Chaos Mesh (NetworkChaos)
+    participant Metrics as Prometheus Monitoring
+    participant SelfHeal as Autonomous Rollback
+    
+    Rollout->>Chaos: Active Canary Pods
+    Chaos->>Rollout: Inject 400ms Delay + 15% HTTP 500
+    Metrics->>Rollout: Success Rate Drops to 84.9% (SLO < 99.5%)
+    Rollout->>SelfHeal: FailureLimit (3) Tripped
+    SelfHeal->>Rollout: Abort Rollout & Kill Canary Pods
+    Rollout->>Rollout: Restore 100% Traffic to Stable ReplicaSet
+```

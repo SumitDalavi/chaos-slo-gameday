@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1] - 2026-10-27
+### Added
+- **Canary Fault Injection:** Added Chaos Mesh `NetworkChaos` (`chaos-experiments/canary-network-delay-abort.yaml`) injecting 400ms latency and 15% HTTP 500 packet corruption into active canary pods.
+- **Closed-Loop Verification Simulation:** Added `scripts/verify-canary-chaos-abort.py` verifying automated canary abort upon SLO degradation (< 0.995).
+- **Autonomous Self-Healing:** Validated that degraded canary pods are killed and 100% traffic is restored to stable pods within 60 seconds with zero production downtime.
+
+
 ## [0.2.0] - 2026-10-20
 ### Added
 - **Progressive Credential Loading (PCL):** Dynamic auto-promotion between zero-dependency mock fallbacks and live production backends based on environment credentials.

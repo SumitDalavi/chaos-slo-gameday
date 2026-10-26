@@ -76,3 +76,12 @@ curl -s http://localhost:8080/health | jq .mode
 docker pull ghcr.io/sumitdalavi/chaos-slo-gameday:v0.2.0
 docker run -d -p 8080:8080 --env-file .env ghcr.io/sumitdalavi/chaos-slo-gameday:v0.2.0
 ```
+
+### Canary Chaos Fault Injection & Closed-Loop Abort (v0.2.1)
+```bash
+# Execute closed-loop canary chaos verification
+python scripts/verify-canary-chaos-abort.py
+
+# Inspect canary network delay manifest
+kubectl apply --dry-run=client -f chaos-experiments/canary-network-delay-abort.yaml
+```

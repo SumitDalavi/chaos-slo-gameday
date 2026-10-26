@@ -21,3 +21,12 @@ We selected Chaos Mesh because it leverages Kubernetes CRDs natively and does no
 - **Consequences:** 
   - *Pros:* 100% CI pass rate without requiring external secrets; zero setup friction for new contributors; progressive upgrade to production clusters.
   - *Cons:* Adds lightweight factory abstraction layers and runtime credential detection logic.
+
+## ADR-003: Closed-Loop Canary Chaos Fault Injection and Automated Rollout Abort
+- **Date:** 2026-10-27
+- **Status:** Accepted
+- **Context:** Validating resilience against canary degradation requires active fault injection directly targeted at canary pods to prove that automated progressive delivery controllers detect anomalies and abort without affecting stable baseline traffic.
+- **Decision:** Introduce Chaos Mesh `NetworkChaos` targeting pods labeled with `rollouts-pod-template-hash` (canary pods) with 400ms latency and 15% packet corruption. Implement `scripts/verify-canary-chaos-abort.py` to simulate telemetry degradation and confirm autonomous canary termination and traffic restoration with zero downtime.
+- **Consequences:**
+  - *Pros:* Proves end-to-end self-healing loop under controlled chaos conditions; validates SLO protection mechanisms.
+  - *Cons:* Requires Chaos Mesh CRDs installed in the target testbed cluster.

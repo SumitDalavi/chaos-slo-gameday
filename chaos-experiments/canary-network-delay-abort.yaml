@@ -1,0 +1,25 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: canary-network-fault-injection
+  namespace: chaos-testing
+  labels:
+    target-workload: rate-limiter-service
+    test-phase: phase-5-closed-loop-canary-verification
+spec:
+  action: delay
+  mode: fixed
+  value: "1"
+  selector:
+    namespaces:
+      - rate-limiter
+    labelSelectors:
+      app: rate-limiter-service
+  delay:
+    latency: "400ms"
+    jitter: "50ms"
+    correlation: "25"
+  corrupt:
+    corrupt: "15"
+    correlation: "10"
+  duration: "3m"
